@@ -10,6 +10,7 @@ var express = require('express'),
     path = require("path"),
     mime = require("mime");
 
+moment.locale('fr');
 var server = http.createServer(function(req, res) {
     var page = url.parse(req.url).pathname;
     console.log(page);
@@ -18,3 +19,8 @@ var server = http.createServer(function(req, res) {
     res.end();
 });
 server.listen(8080);
+
+var app = express();
+app.set('port', process.env.PORT || 5000);
+app.use(bodyParser.urlencoded({extended: true}));
+
