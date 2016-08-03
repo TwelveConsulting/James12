@@ -10,25 +10,19 @@ var express = require('express'),
     path = require("path"),
     mime = require("mime");
 
-//création d'un server
-http.createServer(function (request, response) {
-
-   // Send the HTTP header 
-   // HTTP Status: 200 : OK
-   // Content Type: text/plain
-   response.writeHead(200, {'Content-Type': 'text/plain'});
-   
-   // Send the response body as "Hello World"
-   response.end('Hello World\n');
- }).listen(8000);
-
-// Console will print the message
-console.log('Server running at http://127.0.0.1:8000/');
-console.log('It\'s working');
-
-//Utilisation de express
-var app = express();
-app.listen(3000);
-app.get('/', function(request, response) {
-  response.send('ca marche');
+var server = http.createServer(function(req, res) {
+    var page = url.parse(req.url).pathname;
+    console.log(page);
+    res.writeHead(200, {"Content-Type": "text/plain"});
+    if (page == '/') {
+        res.write('Vous êtes à l\'accueil, que puis-je pour vous ?');
+    }
+    else if (page == '/sous-sol') {
+        res.write('Vous êtes dans la cave à vins, ces bouteilles sont à moi !');
+    }
+    else if (page == '/etage/1/chambre') {
+        res.write('Hé ho, c\'est privé ici !');
+    }
+    res.end();
 });
+server.listen(8080);
