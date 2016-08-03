@@ -1,16 +1,16 @@
 //appels aux librairies
 var express = require('express'),
     bodyParser = require('body-parser'),
-    moment = require('moment'),
+    //moment = require('moment'),
     http = require("http"),
-    url = require("url"),
-    Botkit = require('botkit'),
-    Store = require("jfs"),
-    fs = require("fs"),
-    path = require("path"),
-    mime = require("mime");
+    url = require("url");//,
+    //Botkit = require('botkit'),
+    //Store = require("jfs"),
+    //fs = require("fs"),
+    //path = require("path"),
+    //mime = require("mime");
 
-moment.locale('fr');
+//moment.locale('fr');
 
 var server = http.createServer(function(req, res) {
     var page = url.parse(req.url).pathname;
