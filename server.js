@@ -12,14 +12,14 @@ var express = require('express'),
 
 //moment.locale('fr');
 
-var server = http.createServer(function(req, res) {
+/*var server = http.createServer(function(req, res) {
     var page = url.parse(req.url).pathname;
     console.log(page);
     res.writeHead(200, {"Content-Type": "text/plain"});
     res.write('Bien le bonjour');
     res.end();
 });
-server.listen(8080);
+server.listen(8080);*/
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
