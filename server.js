@@ -10,9 +10,6 @@ var express = require('express'),
     path = require("path"),
     mime = require("mime");
 
-var http = require('http');
-var url = require('url');
-
 var server = http.createServer(function(req, res) {
     var page = url.parse(req.url).pathname;
     console.log(page);
