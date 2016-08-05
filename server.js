@@ -57,14 +57,10 @@ app.get('/', function(request, response) {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
 
-app.get('/',function(req,res){
-    var code = req.param('code');
-
-  res.send('code = '+code);
-
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
-});;
+app.param('param',function (req, res, next, value) {
+    console.log('CALLED ONLY ONCE with', value);
+  next();
+});
 
 
 app.post('/conges', conges.execute);
