@@ -61,16 +61,30 @@ app.get('/', function(request, response) {
 }).listen(app.get('port'), function() { 
 });
 
-app.get('/', function(request, response) {
-    var result = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
+var options = {
+  hostname: 'slack.com',
+  port: 443,
+  path: '/api/oauth.access?client_id='+process.env.CLIENT_ID+
                                                      '&client_secret='+process.env.CLIENT_SECRET+
                                                      '&code='+code+
-                                                     '&redirect_uri=https://james12.herokuapp.com/>'
-                    +'<b>oAuth</b>'
-                +'</a>'
-    response.send(result);
-}).listen(app.get('port2'), function() { 
+                                                     '&redirect_uri=https://james12.herokuapp.com/',
+  method: 'GET'
+};
+
+var req = https.request(options, (res) => {
+  console.log('statusCode: ', res.statusCode);
+  console.log('headers: ', res.headers);
+
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
 });
+req.end();
+
+req.on('error', (e) => {
+  console.error(e);
+});
+
 
 
 
