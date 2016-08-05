@@ -53,7 +53,15 @@ app.get('/', function(request, response) {
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />'
                 +'</a>'
     response.send(result);
-}).listen(app.get('port'), function() {
+});
+app.get('/',function(req,res){
+    var code = req.param('code');
+
+  res.send('code = '+code);
+
+});
+
+app.listen(app.get('port'), function() {
     console.log('App is running, server is listening on port ', app.get('port'));
 });
 
