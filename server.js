@@ -16,6 +16,7 @@ moment.locale('fr');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
+app.set('port2', (process.env.PORT2 || 8080));
 
 app.get('/', function(request, response) {
     var result = '<a href="https://slack.com/oauth/authorize?scope=bot,'
@@ -58,7 +59,7 @@ app.get('/', function(request, response) {
 app.get('/', function(request, response) {
     var code =req.param('code')
     console.log(code);
-}).listen(app.get('port'), function() {});
+}).listen(app.get('port2'), function() {});
 
 
 
