@@ -53,9 +53,6 @@ app.get('/', function(request, response) {
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />'
                 +'</a>'
     response.send(result);
-    var code = response.param('code');
-
-  response.send('code = '+code);
 });
 
 app.get('/',function(req,res){
