@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     moment = require('moment'),
     http = require("http"),
+    https = require("https"),
     url = require("url");//,
     Botkit = require('botkit'),
     conges = require('./modules/conges');
