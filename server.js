@@ -11,6 +11,8 @@ var express = require('express'),
     //path = require("path"),
     //mime = require("mime");
 
+var code;
+
 moment.locale('fr');
 
 var app = express();
@@ -47,7 +49,7 @@ app.get('/', function(request, response) {
                                                                 +'users.profile:write,'
                                                                 +'users:read,'
                                                                 +'users:write'
-                                                                +'&client_id=48833382512.61501878338">'
+                                                                +'&client_id='+process.env.CLIENT_ID+'>'
                     +'<img alt="Add to Slack" height="40" width="139"' 
                         +'src="https://platform.slack-edge.com/img/add_to_slack.png" '
                         +'srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, '
@@ -57,14 +59,17 @@ app.get('/', function(request, response) {
     var code =request.param('code');
     console.log(code);
 }).listen(app.get('port'), function() { 
-    console.log('listening5000');
 });
 
 app.get('/', function(request, response) {
-    var code =req.param('code');
-    console.log(code);
-}).listen(app.get('port2'), function() {
-    console.log('listening8080');
+    var result = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
+                                                     '&client_secret='+process.env.CLIENT_SECRET+
+                                                     '&code='+code+
+                                                     '&redirect_uri=https://james12.herokuapp.com/>'
+                    +'<b>oAuth</b>'
+                +'</a>'
+    response.send(result);
+}).listen(app.get('port'), function() { 
 });
 
 
