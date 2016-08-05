@@ -53,9 +53,7 @@ app.get('/', function(request, response) {
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />'
                 +'</a>'
     response.send(result);
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
-});
+}).listen(app.get('port'), function() {});
 
 app.param('param',function (req, res, next, value) {
     console.log('CALLED ONLY ONCE with', value);
