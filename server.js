@@ -58,6 +58,13 @@ app.get('/', function(request, response) {
     response.send(result);
     var code =request.param('code');
     console.log(code);
+    var result2 = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
+                                                     '&client_secret='+process.env.CLIENT_SECRET+
+                                                     '&code='+code+
+                                                     '&redirect_uri=https://james12.herokuapp.com/>'
+                    +'<b>oAuth</b>'
+                +'</a>'
+    response.send(result2);
 }).listen(app.get('port'), function() { 
 });
 
