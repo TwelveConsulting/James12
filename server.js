@@ -58,17 +58,10 @@ app.get('/', function(request, response) {
     response.send(result);
     code =request.param('code');
     console.log(code);
-    var result2 = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
-                                                     '&client_secret='+process.env.CLIENT_SECRET+
-                                                     '&code='+code+
-                                                     '&redirect_uri=https://james12.herokuapp.com/>'
-                    +'<b>oAuth</b>'
-                +'</a>'
-    response.send(result2);
 }).listen(app.get('port'), function() { 
 });
 
-/*app.get('/', function(request, response) {
+app.get('/', function(request, response) {
     var result = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
                                                      '&client_secret='+process.env.CLIENT_SECRET+
                                                      '&code='+code+
@@ -76,8 +69,8 @@ app.get('/', function(request, response) {
                     +'<b>oAuth</b>'
                 +'</a>'
     response.send(result);
-}).listen(app.get('port'), function() { 
-});*/
+}).listen(app.get('port2'), function() { 
+});
 
 
 
