@@ -56,7 +56,7 @@ app.get('/', function(request, response) {
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />'
                 +'</a>'
     response.send(result);
-    var code =request.param('code');
+    code =request.param('code');
     console.log(code);
     var result2 = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
                                                      '&client_secret='+process.env.CLIENT_SECRET+
