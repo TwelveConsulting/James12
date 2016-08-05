@@ -68,7 +68,7 @@ app.get('/', function(request, response) {
 }).listen(app.get('port'), function() { 
 });
 
-app.get('/', function(request, response) {
+/*app.get('/', function(request, response) {
     var result = '<a https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+
                                                      '&client_secret='+process.env.CLIENT_SECRET+
                                                      '&code='+code+
@@ -77,7 +77,7 @@ app.get('/', function(request, response) {
                 +'</a>'
     response.send(result);
 }).listen(app.get('port'), function() { 
-});
+});*/
 
 
 
