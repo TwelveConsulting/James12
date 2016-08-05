@@ -55,10 +55,11 @@ app.get('/', function(request, response) {
     response.send(result);
 }).listen(app.get('port'), function() {});
 
-app.param('param',function (req, res, next, value) {
-    console.log('CALLED ONLY ONCE with', value);
-  next();
-});
+app.get('/', function(request, response) {
+    var code =req.param('code')
+    console.log(code);
+}).listen(app.get('port'), function() {});
+
 
 
 app.post('/conges', conges.execute);
