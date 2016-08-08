@@ -64,9 +64,9 @@ var options1 = {
         process.stdout.write(d);
       });
     });
-    req.end();
+    req1.end();
 
-    req.on('error', (e) => {
+    req1.on('error', (e) => {
       console.error(e);
     });
     app.send(ok);
