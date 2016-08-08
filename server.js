@@ -52,7 +52,7 @@ var options1 = {
                                 +'users.profile:write,'
                                 +'users:read,'
                                 +'users:write'
-                                +'&client_id='+process.env.CLIENT_ID
+                                +'&client_id='+process.env.CLIENT_ID,
       method: 'GET'
     };
 
@@ -115,7 +115,7 @@ var options1 = {
                                                          '&client_secret='+process.env.CLIENT_SECRET+
                                                          '&code='+code+
                                                          '&redirect_uri=https://james12.herokuapp.com/',
-      method: 'GET';
+      method: 'GET'
     };
 
     var req = https.request(options, (res) => {
