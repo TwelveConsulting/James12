@@ -69,7 +69,7 @@ var options1 = {
     req1.on('error', (e) => {
       console.error(e);
     });
-    app.send(ok);
+    app.send('ok');
 /*app.get('/', function(request, response) {
     var result = '<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                                 +'incoming-webhook,'
