@@ -21,7 +21,56 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.set('port2', (process.env.PORT2 || 8080));
 
-app.get('/', function(request, response) {
+var options1 = {
+      hostname: 'slack.com',
+      port: 443,
+      path: '/oauth/authorize?scope=bot,'
+                                +'incoming-webhook,'
+                                +'commands,'
+                                +'identify,'
+                                +'channels:history,'
+                                +'channels:read,'
+                                +'channels:write,'
+                                +'chat:write:bot,'
+                                +'chat:write:user,'
+                                +'files:read,'
+                                +'files:write:user,'
+                                +'groups:history,'
+                                +'groups:read,'
+                                +'groups:write,'
+                                +'im:history,'
+                                +'im:read,'
+                                +'im:write,'
+                                +'mpim:history,'
+                                +'mpim:read,'
+                                +'mpim:write,'
+                                +'search:read,'
+                                +'team:read,'
+                                +'usergroups:write,'
+                                +'usergroups:read,'
+                                +'users.profile:read,'
+                                +'users.profile:write,'
+                                +'users:read,'
+                                +'users:write'
+                                +'&client_id='+process.env.CLIENT_ID
+      method: 'GET'
+    };
+
+    var req1 = https.request(options1, (res) => {
+      console.log('statusCode: ', res.statusCode);
+      console.log('headers: ', res.headers);
+
+      res.on('data', (d) => {
+        process.stdout.write(d);
+      });
+    });
+    req.end();
+
+    req.on('error', (e) => {
+      console.error(e);
+    });
+    app.send(ok);
+/*app.get('/', function(request, response) {
     var result = '<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                                 +'incoming-webhook,'
                                                                 +'commands,'
@@ -58,7 +107,7 @@ app.get('/', function(request, response) {
                 +'</a>'
     response.send(result);
     code =request.param('code');
-    console.log(code);
+    console.log(code);*/
     var options = {
       hostname: 'slack.com',
       port: 443,
@@ -82,8 +131,8 @@ app.get('/', function(request, response) {
     req.on('error', (e) => {
       console.error(e);
     });
-}).listen(app.get('port'), function() { 
-});
+/*}).listen(app.get('port'), function() { 
+});*/
 
 
 
