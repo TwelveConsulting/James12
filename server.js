@@ -56,20 +56,20 @@ var options1 = {
       method: 'GET'
     };
 
-    var req1 = https.request(options1, (res) => {
-      console.log('statusCode: ', res.statusCode);
-      console.log('headers: ', res.headers);
+var req1 = https.request(options1, (res) => {
+  console.log('statusCode: ', res.statusCode);
+  console.log('headers: ', res.headers);
 
-      res.on('data', (d) => {
-        process.stdout.write(d);
-      });
-    });
-    req1.end();
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+req1.end();
 
-    req1.on('error', (e) => {
-      console.error(e);
-    });
-    app.send('ok');
+req1.on('error', (e) => {
+  console.error(e);
+});
+console.log('ok');
 /*app.get('/', function(request, response) {
     var result = '<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                                 +'incoming-webhook,'
@@ -108,29 +108,29 @@ var options1 = {
     response.send(result);
     code =request.param('code');
     console.log(code);*/
-    var options = {
-      hostname: 'slack.com',
-      port: 443,
-      path: '/api/oauth.access?client_id='+process.env.CLIENT_ID+
-                                                         '&client_secret='+process.env.CLIENT_SECRET+
-                                                         '&code='+code+
-                                                         '&redirect_uri=https://james12.herokuapp.com/',
-      method: 'GET'
-    };
+var options = {
+  hostname: 'slack.com',
+  port: 443,
+  path: '/api/oauth.access?client_id='+process.env.CLIENT_ID+
+                                                     '&client_secret='+process.env.CLIENT_SECRET+
+                                                     '&code='+code+
+                                                     '&redirect_uri=https://james12.herokuapp.com/',
+  method: 'GET'
+};
 
-    var req = https.request(options, (res) => {
-      console.log('statusCode: ', res.statusCode);
-      console.log('headers: ', res.headers);
+var req = https.request(options, (res) => {
+  console.log('statusCode: ', res.statusCode);
+  console.log('headers: ', res.headers);
 
-      res.on('data', (d) => {
-        process.stdout.write(d);
-      });
-    });
-    req.end();
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+req.end();
 
-    req.on('error', (e) => {
-      console.error(e);
-    });
+req.on('error', (e) => {
+  console.error(e);
+});
 /*}).listen(app.get('port'), function() { 
 });*/
 
