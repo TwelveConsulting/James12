@@ -21,7 +21,7 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.set('port2', (process.env.PORT2 || 8080));
 
-var options1 = {
+/*var options1 = {
       hostname: 'slack.com',
       port: 443,
       path: '/oauth/authorize?scope=bot,'
@@ -69,8 +69,9 @@ req1.end();
 req1.on('error', (e) => {
   console.error(e);
 });
-console.log('ok');
-/*app.get('/', function(request, response) {
+console.log('ok');*/
+
+app.get('/', function(request, response) {
     var result = '<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                                 +'incoming-webhook,'
                                                                 +'commands,'
@@ -107,8 +108,9 @@ console.log('ok');
                 +'</a>'
     response.send(result);
     code =request.param('code');
-    console.log(code);*/
-var options = {
+    console.log(code);
+
+/*var options = {
   hostname: 'slack.com',
   port: 443,
   path: '/api/oauth.access?client_id='+process.env.CLIENT_ID+
@@ -130,9 +132,9 @@ req.end();
 
 req.on('error', (e) => {
   console.error(e);
-});
-/*}).listen(app.get('port'), function() { 
 });*/
+}).listen(app.get('port'), function() { 
+});
 
 
 
