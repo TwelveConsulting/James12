@@ -107,8 +107,8 @@ app.get('/', function(request, response) {
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" />'
                 +'</a>'
     response.send(result);
-    code =request.param('code');
-    console.log(code);
+    //code =request.param('code');
+    //console.log(code);
 }).listen(app.get('port'), function() { 
 });
 
