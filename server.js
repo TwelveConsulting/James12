@@ -109,6 +109,9 @@ app.get('/', function(request, response) {
     response.send(result);
     code =request.param('code');
     console.log(code);
+}).listen(app.get('port'), function() { 
+});
+
 
 /*var options = {
   hostname: 'slack.com',
@@ -133,8 +136,6 @@ req.end();
 req.on('error', (e) => {
   console.error(e);
 });*/
-}).listen(app.get('port'), function() { 
-});
 
 
 
