@@ -65,10 +65,9 @@ boutonSlack = function(req, res, next) {
 };
 
 recupCode = function(req, res, next){
-   /* if (!(req.params.parametres === null)) {
-        var parametres = req.params.parametres;
-        res.send(code);
-        console.log(req.params());
+   var parametres = req.params;
+        //res.send(code);
+        console.log(parametres);
         console.log('cb1 : le code est récupéré');
     }
     console.log(req.params());*/
