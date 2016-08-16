@@ -56,18 +56,22 @@ boutonSlack = function(req, res, next) {
                     +'src="https://platform.slack-edge.com/img/add_to_slack.png" '
                     +'srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, '
                     +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
+
         console.log('cb0:le bouton slack s\'affiche');
         res.end();
     }
+    console.log(req.params());
     next();
 };
 
 recupCode = function(req, res, next){
     if (!(req.params == {})) {
-        var code = req.param('code');
+        var code = req.params('code');
         res.send(code);
+        console.log(req.params());
         console.log('cb1 : le code est récupéré');
     }
+    console.log(req.params());
     next(); 
 };
 
