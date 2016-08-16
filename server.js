@@ -17,8 +17,10 @@ var code;
 moment.locale('fr');
 
 var app = express();
+var router = express.Router();
 
 var port = process.env.PORT || 5000;
+app.use('/', router);
 
 //Fonctions de Callback
 boutonSlack = function(req, res, next) {
@@ -58,7 +60,6 @@ boutonSlack = function(req, res, next) {
                     +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
 
         console.log('cb0:le bouton slack s\'affiche');
-        res.end();
     //}
     console.log(req.params);
     next();
@@ -71,10 +72,11 @@ recupCode = function(req, res, next){
         console.log('cb1 : le code est récupéré');
     
     console.log(req.params());
-    next(); 
+    res.end(); 
 };
-
-app.get('/', [boutonSlack,recupCode]);
+router.get('/',boutonSlack);
+router.get('/',recupCode);
+/*app.get('/', [boutonSlack,recupCode]);*/
 app.listen(port, function () {
   console.log('Ready');
 });
