@@ -60,7 +60,7 @@ boutonSlack = function(req, res, next) {
         console.log('cb0:le bouton slack s\'affiche');
         res.end();
     //}
-    console.log(req.params());
+    console.log(req.params);
     next();
 };
 
