@@ -26,9 +26,10 @@ recupCode = function(req, res, next){
         console.log(req.params);
         console.log('cb1 : le code est récupéré');
     res.end(); 
+};
 
 //Fonctions de Callback
-boutonSlack = function(req, res, next) {
+boutonSlack = function(req, res) {
     //if (req.params.parametres === null) {
         res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                             +'incoming-webhook,'
@@ -69,9 +70,6 @@ boutonSlack = function(req, res, next) {
     router.get('/oauth/',recupCode);
 };
 
-
-};
-setTimeout(recupCode, 100); 
 router.get('/',boutonSlack);
 /*app.get('/', [boutonSlack,recupCode]);*/
 app.listen(port, function () {
