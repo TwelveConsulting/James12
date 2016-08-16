@@ -75,7 +75,7 @@ recupCode = function(req, res, next){
     next(); 
 };
 
-app.get('/:parametres', [boutonSlack,recupCode]);
+app.get('/', [boutonSlack,recupCode]);
 app.listen(port, function () {
   console.log('Ready');
 });
