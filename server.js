@@ -20,57 +20,8 @@ var app = express();
 
 var port = process.env.PORT || 5000;
 
-/*var options1 = {
-      hostname: 'slack.com',
-      port: 443,
-      path: '/oauth/authorize?scope=bot,'
-                                +'incoming-webhook,'
-                                +'commands,'
-                                +'identify,'
-                                +'channels:history,'
-                                +'channels:read,'
-                                +'channels:write,'
-                                +'chat:write:bot,'
-                                +'chat:write:user,'
-                                +'files:read,'
-                                +'files:write:user,'
-                                +'groups:history,'
-                                +'groups:read,'
-                                +'groups:write,'
-                                +'im:history,'
-                                +'im:read,'
-                                +'im:write,'
-                                +'mpim:history,'
-                                +'mpim:read,'
-                                +'mpim:write,'
-                                +'search:read,'
-                                +'team:read,'
-                                +'usergroups:write,'
-                                +'usergroups:read,'
-                                +'users.profile:read,'
-                                +'users.profile:write,'
-                                +'users:read,'
-                                +'users:write'
-                                +'&client_id='+process.env.CLIENT_ID,
-      method: 'GET'
-    };
-
-var req1 = https.request(options1, (res) => {
-  console.log('statusCode: ', res.statusCode);
-  console.log('headers: ', res.headers);
-
-  res.on('data', (d) => {
-    process.stdout.write(d);
-  });
-});
-req1.end();
-
-req1.on('error', (e) => {
-  console.error(e);
-});
-console.log('ok');*/
-
-app.get('/', function(req, res) {
+//Fonctions de Callback
+boutonSlack = function(req, res, next) {
     res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                                 +'incoming-webhook,'
                                                                 +'commands,'
@@ -104,7 +55,12 @@ app.get('/', function(req, res) {
                         +'src="https://platform.slack-edge.com/img/add_to_slack.png" '
                         +'srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, '
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
-}).listen(port, function () {
+    console.log(cb0);
+    next();
+}
+
+app.get('/', [boutonSlack]);
+app.listen(port, function () {
   console.log('Ready');
 });
 
