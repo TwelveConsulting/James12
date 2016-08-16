@@ -66,12 +66,10 @@ boutonSlack = function(req, res, next) {
 };
 
 recupCode = function(req, res, next){
-   var parametres = req.param();
+   var parametres = req.param(code);
         //res.send(code);
         console.log(parametres);
         console.log('cb1 : le code est récupéré');
-    
-    console.log(req.params());
     res.end(); 
 };
 router.get('/',boutonSlack);
