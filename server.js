@@ -70,7 +70,7 @@ recupCode = function(req, res, next){
     res.end(); 
 };
 router.get('/',boutonSlack);
-router.get('/',recupCode);
+router.get('/oauth',recupCode);
 /*app.get('/', [boutonSlack,recupCode]);*/
 app.listen(port, function () {
   console.log('Ready');
