@@ -67,10 +67,25 @@ recupCode = function(req, res, next){
     next(); 
 };
 
-app.get('/', [boutonSlack,recupCode]);
+app.get('/', function (req, res, next) {
+  // if the user ID is 0, skip to the next route
+  if (req.params == {}) next('route');
+  // otherwise pass the control to the next middleware function in this stack
+  else next(); //
+}, function (req, res, next) {
+  // render a regular page
+  boutonSlack;
+});
+
+// handler for the /user/:id path, which renders a special page
+app.get('/user/:id', function (req, res, next) {
+  recupCode;
+});
+
+/*app.get('/', [boutonSlack,recupCode]);
 app.listen(port, function () {
   console.log('Ready');
-});
+});*/
 
 
 app.post('/conges', conges.execute);
