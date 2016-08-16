@@ -106,7 +106,7 @@ app.get('/', function(request, response) {
     response.send(result);
 }).listen(app.get('port', function () {
   console.log('Ready');
-});
+}));
 
 
 /*var options = {
