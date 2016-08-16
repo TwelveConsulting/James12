@@ -22,7 +22,7 @@ var port = process.env.PORT || 5000;
 
 //Fonctions de Callback
 boutonSlack = function(req, res, next) {
-    if (req.params() == {}) {
+    if (req.params.parametres === null) {
         res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                             +'incoming-webhook,'
                                                             +'commands,'
@@ -65,17 +65,17 @@ boutonSlack = function(req, res, next) {
 };
 
 recupCode = function(req, res, next){
-    if (!(req.params() == {})) {
-        var code = req.params('code');
+   /* if (!(req.params.parametres === null)) {
+        var parametres = req.params.parametres;
         res.send(code);
         console.log(req.params());
         console.log('cb1 : le code est récupéré');
     }
-    console.log(req.params());
+    console.log(req.params());*/
     next(); 
 };
 
-app.get('/', [boutonSlack,recupCode]);
+app.get('/:parametres', [boutonSlack,recupCode]);
 app.listen(port, function () {
   console.log('Ready');
 });
