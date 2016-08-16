@@ -61,14 +61,11 @@ boutonSlack = function(req, res, next) {
 
         console.log('cb0:le bouton slack s\'affiche');
     //}
-    console.log(req.params);
     next();
 };
 
 recupCode = function(req, res, next){
-   var parametres = req.param(code);
-        //res.send(code);
-        console.log(parametres);
+        console.log(req.param(code);
         console.log('cb1 : le code est récupéré');
     res.end(); 
 };
@@ -79,5 +76,3 @@ app.listen(port, function () {
   console.log('Ready');
 });
 
-
-app.post('/conges', conges.execute);
