@@ -57,9 +57,16 @@ boutonSlack = function(req, res, next) {
                         +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
     console.log(cb0);
     next();
-}
+};
 
-app.get('/', [boutonSlack]);
+recupCode = function(req, res, next){
+    var code = req.query.code;
+    res.send(code);
+    console.log(cb1);
+    next(); 
+};
+
+app.get('/', [boutonSlack,recupCode]);
 app.listen(port, function () {
   console.log('Ready');
 });
