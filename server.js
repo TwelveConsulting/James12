@@ -99,8 +99,7 @@ app.get('/', function(req, res) {
                                                                 +'users.profile:write,'
                                                                 +'users:read,'
                                                                 +'users:write'
-                                                                +'&client_id='+process.env.CLIENT_ID+'>'
-                        +'lien</a>');
+                                                                +'&client_id='+process.env.CLIENT_ID+'>lien</a>');
 }).listen(port, function () {
   console.log('Ready');
 });
