@@ -70,7 +70,7 @@ recupCode = function(req, res, next){
         console.log(parametres);
         console.log('cb1 : le code est récupéré');
     }
-    console.log(req.params());*/
+    console.log(req.params());
     next(); 
 };
 
