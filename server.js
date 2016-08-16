@@ -109,13 +109,38 @@ app.get('/', function(request, response) {
 });
 
 
-/*var options = {
+var options = {
   hostname: 'slack.com',
   port: 443,
-  path: '/api/oauth.access?client_id='+process.env.CLIENT_ID+
-                                                     '&client_secret='+process.env.CLIENT_SECRET+
-                                                     '&code='+code+
-                                                     '&redirect_uri=https://james12.herokuapp.com/',
+  path: 'oauth/authorize?scope=bot,'
+                            +'incoming-webhook,'
+                            +'commands,'
+                            +'identify,'
+                            +'channels:history,'
+                            +'channels:read,'
+                            +'channels:write,'
+                            +'chat:write:bot,'
+                            +'chat:write:user,'
+                            +'files:read,'
+                            +'files:write:user,'
+                            +'groups:history,'
+                            +'groups:read,'
+                            +'groups:write,'
+                            +'im:history,'
+                            +'im:read,'
+                            +'im:write,'
+                            +'mpim:history,'
+                            +'mpim:read,'
+                            +'mpim:write,'
+                            +'search:read,'
+                            +'team:read,'
+                            +'usergroups:write,'
+                            +'usergroups:read,'
+                            +'users.profile:read,'
+                            +'users.profile:write,'
+                            +'users:read,'
+                            +'users:write'
+                            +'&client_id='+process.env.CLIENT_ID,
   method: 'GET'
 };
 
@@ -131,7 +156,7 @@ req.end();
 
 req.on('error', (e) => {
   console.error(e);
-});*/
+});
 
 
 
