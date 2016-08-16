@@ -70,8 +70,8 @@ req1.on('error', (e) => {
 });
 console.log('ok');*/
 
-app.get('/', function(request, response) {
-    response.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
+app.get('/', function(req, res) {
+    res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                                 +'incoming-webhook,'
                                                                 +'commands,'
                                                                 +'identify,'
