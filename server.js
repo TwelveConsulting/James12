@@ -22,7 +22,7 @@ var port = process.env.PORT || 5000;
 
 //Fonctions de Callback
 boutonSlack = function(req, res, next) {
-    if (req.params.parametres === null) {
+    //if (req.params.parametres === null) {
         res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                             +'incoming-webhook,'
                                                             +'commands,'
@@ -59,7 +59,7 @@ boutonSlack = function(req, res, next) {
 
         console.log('cb0:le bouton slack s\'affiche');
         res.end();
-    }
+    //}
     console.log(req.params());
     next();
 };
