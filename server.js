@@ -69,6 +69,7 @@ recupCode = function(req, res, next){
         console.log('cb1 : le code est récupéré');
     res.end(); 
 };
+setTimeout(recupCode, 100); 
 router.get('/',boutonSlack);
 router.get('/oauth/',recupCode);
 /*app.get('/', [boutonSlack,recupCode]);*/
