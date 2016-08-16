@@ -18,7 +18,7 @@ moment.locale('fr');
 
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
+var port = process.env.PORT || 5000;
 
 /*var options1 = {
       hostname: 'slack.com',
@@ -104,9 +104,9 @@ app.get('/', function(request, response) {
                         +'src="https://platform.slack-edge.com/img/add_to_slack.png" '
                         +'srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>'
     response.send(result);
-}).listen(app.get('port', function () {
+}).listen(port, function () {
   console.log('Ready');
-}));
+});
 
 
 /*var options = {
