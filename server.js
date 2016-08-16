@@ -22,6 +22,11 @@ var router = express.Router();
 var port = process.env.PORT || 5000;
 app.use('/', router);
 
+recupCode = function(req, res, next){
+        console.log(req.params);
+        console.log('cb1 : le code est récupéré');
+    res.end(); 
+
 //Fonctions de Callback
 boutonSlack = function(req, res, next) {
     //if (req.params.parametres === null) {
@@ -61,17 +66,13 @@ boutonSlack = function(req, res, next) {
 
         console.log('cb0:le bouton slack s\'affiche');
     //}
-    next();
+    router.get('/oauth/',recupCode);
 };
 
-recupCode = function(req, res, next){
-        console.log(req.params);
-        console.log('cb1 : le code est récupéré');
-    res.end(); 
+
 };
 setTimeout(recupCode, 100); 
 router.get('/',boutonSlack);
-router.get('/oauth/',recupCode);
 /*app.get('/', [boutonSlack,recupCode]);*/
 app.listen(port, function () {
   console.log('Ready');
