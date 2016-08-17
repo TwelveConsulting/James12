@@ -23,7 +23,7 @@ var port = process.env.PORT || 5000;
 app.use('/', router);
 
 recupCode = function(req, res, next){
-        console.log(req.params);
+        console.log(req.query.code);
         console.log('cb1 : le code est récupéré');
     res.end(); 
 };
