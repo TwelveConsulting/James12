@@ -78,7 +78,7 @@ recupCode = function(req, res, next){
             console.log('headers:', res.headers);
 
             res.on('data', (d) => {
-                process.stdout.write(d);
+                console.log(d);
             });
 
         }).on('error', (e) => {
