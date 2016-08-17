@@ -13,6 +13,7 @@ var express = require('express'),
     //mime = require("mime");
 
 var code;
+var token;
 
 moment.locale('fr');
 
@@ -79,7 +80,8 @@ recupCode = function(req, res, next){
             console.log('body', res.body);
 
             res.on('data', (chunk) => {
-                console.log(`BODY: ${chunk}`);
+                token = chunk.access_token;
+                console.log(token);
             });
 
             res.on('data', (d) => {
