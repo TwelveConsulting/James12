@@ -78,6 +78,7 @@ recupCode = function(req, res, next){
             console.log('headers:', res.headers);
 
             res.on('data', (d) => {
+                var jsonObject = JSON.parse(d);
                 console.log(d);
             });
 
