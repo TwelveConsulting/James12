@@ -73,21 +73,21 @@ recupCode = function(req, res, next){
         console.log(req.query.code);
         code = req.query.code;
         console.log('cb1 : le code est récupéré');
-        accesOauth.on('error', (e) => {
-  console.error(e);
-});
+        https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
+            console.log('statusCode:', res.statusCode);
+            console.log('headers:', res.headers);
+
+            res.on('data', (d) => {
+                process.stdout.write(d);
+            });
+
+        }).on('error', (e) => {
+        console.error(e);
+        });
     res.end(); 
 };
 
-var accesOauth = https.request(options_oauthAccess, (res) => {
-  console.log('statusCode:', res.statusCode);
-  console.log('headers:', res.headers);
 
-  res.on('data', (d) => {
-    process.stdout.write(d);
-  });
-});
-accesOauth.end();
 
 router.get('/',boutonSlack);
 /*app.get('/', [boutonSlack,recupCode]);*/
@@ -95,9 +95,4 @@ app.listen(port, function () {
   console.log('Ready');
 });
 
-var options_oauthAccess = {
-  hostname: 'slack.com/api/oauth.access',
-  port: 443,
-  path: '/?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code,
-  method: 'GET'
-};
+
