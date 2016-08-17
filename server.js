@@ -76,6 +76,7 @@ recupCode = function(req, res, next){
         https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
+            console.log('body', res.body);
 
             res.on('data', (d) => {
                 var jsonObject = JSON.parse(d);
