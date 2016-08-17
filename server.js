@@ -78,6 +78,10 @@ recupCode = function(req, res, next){
             console.log('headers:', res.headers);
             console.log('body', res.body);
 
+            res.on('data', (chunk) => {
+                console.log(`BODY: ${chunk}`);
+            });
+
             res.on('data', (d) => {
                 var jsonObject = JSON.parse(d);
                 console.log(d);
