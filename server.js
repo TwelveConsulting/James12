@@ -30,7 +30,6 @@ recupCode = function(req, res, next){
 
 //Fonctions de Callback
 boutonSlack = function(req, res) {
-    //if (req.params.parametres === null) {
         res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                             +'incoming-webhook,'
                                                             +'commands,'
@@ -66,7 +65,6 @@ boutonSlack = function(req, res) {
                     +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
 
         console.log('cb0:le bouton slack s\'affiche');
-    //}
     router.get('/oauth/',recupCode);
 };
 
