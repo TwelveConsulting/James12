@@ -66,6 +66,7 @@ boutonSlack = function(req, res) {
 
         console.log('cb0:le bouton slack s\'affiche');
     app.get('/reponseOAuth/',recupCode);
+    res.end();
 };
 
 recupCode = function(req, res, next){
