@@ -77,7 +77,7 @@ recupCode = function(req, res, next){
     console.log('cb1 : le code est récupéré');
     https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
         res.on('data', (chunk) => {
-            var result = chunk;
+            var result = JSON.parse(chunk);
             console.log(typeof(result));
         });
     });
