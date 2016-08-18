@@ -1,11 +1,13 @@
-//var CONGES_TOKEN = process.env.SLACK_CONGES_TOKEN;
+var org = require('./auth').org,
+
+    CONGES_TOKEN = process.env.SLACKTOKEN;
 
 function execute(req, res) {
 
-    /*if (req.body.token != CONGES_TOKEN) {
+    if (req.body.token != CONGES_TOKEN) {
          res.send("Invalid token");
          return;
-    }*/
+    }
 
      var limit = req.body.text;
      if (!limit || limit=="") limit = 5;
