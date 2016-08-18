@@ -65,15 +65,21 @@ boutonSlack = function(req, res) {
                     +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
 
         console.log('cb0:le bouton slack s\'affiche');
+    next();
     app.get('/reponseOAuth/',recupCode);
-    res.end();
 };
 
 recupCode = function(req, res, next){
     console.log(req.query.code);
     code = req.query.code;
     console.log('cb1 : le code est récupéré');
-    app.get('/recuperationToken/',recupToken);
+    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
+        res.on('data', (chunk) => {
+            var result = JSON.parse(chunk);
+            console.log(result.access_token);
+        });
+    });
+    res.end();
     
 };
 
