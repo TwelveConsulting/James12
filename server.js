@@ -79,8 +79,7 @@ recupCode = function(req, res, next){
             console.log('headers:', res.headers);
 
             res.on('data', (chunk) => {
-                token = ${chunk};
-                console.log(token);
+                console.log(chunk);
             });
 
             res.on('data', (d) => {
