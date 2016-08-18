@@ -29,7 +29,7 @@ recupCode = function(req, res, next){
 };
 
 //Fonctions de Callback
-boutonSlack = function(req, res) {
+boutonSlack = function(req, res,next) {
         res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                             +'incoming-webhook,'
                                                             +'commands,'
