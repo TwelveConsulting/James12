@@ -20,7 +20,6 @@ moment.locale('fr');
 var app = express();
 
 var port = process.env.PORT || 5000;
-app.use('/', router);
 
 recupCode = function(req, res, next){
         console.log(req.query.code);
