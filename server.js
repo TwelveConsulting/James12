@@ -77,9 +77,11 @@ recupCode = function(req, res, next){
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(result.access_token);
+            process.env.SLACKTOKEN = result.access_token;
+            console.log(process.env.SLACKTOKEN);
+            console.log('cb2 : le token est récupéré')
         });
     });
-    console.log('cb2 : le token est récupéré')
     res.end();
     
     
