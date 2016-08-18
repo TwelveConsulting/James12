@@ -11,10 +11,7 @@ var express = require('express'),
     fs = require("fs"),
     path = require("path"),
     mime = require("mime"),
-    conges = require('./modules/conges').
-
-
-var token;
+    conges = require('./modules/conges');
 
 moment.locale('fr');
 
