@@ -18,7 +18,6 @@ var token;
 moment.locale('fr');
 
 var app = express();
-var router = express.Router();
 
 var port = process.env.PORT || 5000;
 app.use('/', router);
@@ -67,14 +66,14 @@ boutonSlack = function(req, res) {
                     +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
 
         console.log('cb0:le bouton slack s\'affiche');
-    router.get('/reponseOAuth/',recupCode);
+    app.get('/reponseOAuth/',recupCode);
 };
 
 recupCode = function(req, res, next){
     console.log(req.query.code);
     code = req.query.code;
     console.log('cb1 : le code est récupéré');
-    router.get('/recuperationToken/',recupToken);
+    app.get('/recuperationToken/',recupToken);
     
 };
 
@@ -88,7 +87,7 @@ recupToken = function(req, res, next){
 }
 
 
-router.get('/',boutonSlack);
+app.get('/',boutonSlack);
 /*app.get('/', [boutonSlack,recupCode]);*/
 app.listen(port, function () {
   console.log('Ready');
