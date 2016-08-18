@@ -71,18 +71,21 @@ boutonSlack = function(req, res) {
 };
 
 recupCode = function(req, res, next){
-    var body;
     console.log(req.query.code);
     code = req.query.code;
     console.log('cb1 : le code est récupéré');
+    router.get('/',recupToken);
+    
+};
+
+recupToken = function(req, res, next){
     https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(result.access_token);
         });
     });
-};
-
+}
 
 
 router.get('/',boutonSlack);
