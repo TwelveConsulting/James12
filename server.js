@@ -78,6 +78,7 @@ recupCode = function(req, res, next){
         https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
+            console.log('data:', data)
         // Readable streams emit 'data' events once a listener is added
         req.on('data', (chunk) => {
             body += chunk;
