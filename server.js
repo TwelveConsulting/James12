@@ -76,32 +76,8 @@ recupCode = function(req, res, next){
         code = req.query.code;
         console.log('cb1 : le code est récupéré');
         https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
-            console.log('statusCode:', res.statusCode);
-            console.log('headers:', res.headers);
-            console.log('data:', data)
-        // Readable streams emit 'data' events once a listener is added
-        req.on('data', (chunk) => {
-            body += chunk;
-        });
-
-        // the end event indicates that the entire body has been received
-        req.on('end', () => {
-            try {
-            const data = JSON.parse(body);
-            } catch (er) {
-             // uh oh!  bad json!
-            res.statusCode = 400;
-             return res.end(`error: ${er.message}`);
-            }
-
-            // write back something interesting to the user:
-            res.write(typeof data);
-            res.end();
-            });
-
-            }).on('error', (e) => {
-            console.error(e);
-            });
+            console.log(res);
+       
         res.end(); 
 };
 
