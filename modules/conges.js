@@ -1,6 +1,5 @@
-var org = require('./auth').org,
 
-    CONGES_TOKEN = process.env.SLACKTOKEN;
+var CONGES_TOKEN = process.env.SLACKTOKEN;
 
 function execute(req, res) {
 
