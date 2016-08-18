@@ -73,13 +73,8 @@ recupCode = function(req, res, next){
     console.log(req.query.code);
     code = req.query.code;
     console.log('cb1 : le code est récupéré');
-    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+code, (res) => {
-        res.on('data', (chunk) => {
-            var result = JSON.parse(chunk);
-            console.log(result.access_token);
-        });
-    });
-    res.end();
+    next();
+    app.get('/recuperationToken/',recupToken)
     
 };
 
@@ -90,6 +85,8 @@ recupToken = function(req, res, next){
             console.log(result.access_token);
         });
     });
+    console.log('cb2 : le token est récupéré')
+    res.end();
 }
 
 
