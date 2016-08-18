@@ -67,7 +67,7 @@ boutonSlack = function(req, res) {
                     +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
 
         console.log('cb0:le bouton slack s\'affiche');
-    router.get('/oauth/',recupCode);
+    router.get('/',recupCode);
 };
 
 recupCode = function(req, res, next){
