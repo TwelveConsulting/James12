@@ -69,7 +69,7 @@ recupCode = function(req, res, next){
     https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
-            console.log(result.access_token);
+            console.log(JSON.stringify(result));
             process.env.SLACKTOKEN = result.access_token;
             console.log(process.env.SLACKTOKEN);
             console.log('cb2 : le token est récupéré')
