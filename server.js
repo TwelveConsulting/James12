@@ -6,12 +6,12 @@ var express = require('express'),
     https = require("https"),
     url = require("url");//,
     Botkit = require('botkit'),
-    conges = require('./modules/conges');
     Store = require("jfs"),
     fs = require("fs"),
     path = require("path"),
     mime = require("mime"),
     conges = require('./modules/conges');
+    bot = require('./modules/bot')
 
 moment.locale('fr');
 
@@ -75,6 +75,8 @@ recupCode = function(req, res, next){
             console.log('cb2 : le token est récupéré')
         });
     });
+    next();
+    app.post('/running/',[bot.bot,conges.execute]);
     res.end();  
 };
 
@@ -85,4 +87,3 @@ app.listen(port, function () {
   console.log('Ready');
 });
 
-app.post('/conges', conges.execute);
