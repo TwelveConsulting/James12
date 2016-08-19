@@ -69,7 +69,9 @@ recupCode = function(req, res, next){
             var result = JSON.parse(chunk);
             console.log(JSON.stringify(result));
             process.env.SLACKTOKEN = result.access_token;
+            process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
             console.log(process.env.SLACKTOKEN);
+            console.log(process.env.SLACK_BOT_TOKEN);
             console.log('cb2 : le token est récupéré')
         });
     });
