@@ -75,12 +75,21 @@ recupCode = function(req, res, next){
             console.log('cb2 : le token est récupéré')
         });
     });
-    next();
-    app.post('/running/',[bot.bot,conges.execute]);
-    res.end();  
+    next()
+    app.get('/websocket/',ouvertureWebsocket);
 };
 
-
+ouvertureWebsocket = function (req, res, next) {
+    https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
+        res.on('data', (chunk) => {
+            var result = JSON.parse(chunk);
+            console.log(JSON.stringify(result));
+        });
+    });
+    next();
+    app.post('/running/',[bot.botFunction,conges.execute]);
+    res.end(); 
+}
 
 app.get('/',boutonSlack);
 app.listen(port, function () {

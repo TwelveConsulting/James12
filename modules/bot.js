@@ -17,7 +17,7 @@ var db = new Store("./db_storage.json");*/
 // Construction des différents opérateurs
 //var app = express(),
 
-bot = function(req,res,next){
+botFunction = function(req,res,next){
   var controller = Botkit.slackbot();
   const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
   controller = Botkit.slackbot(),
@@ -992,3 +992,5 @@ bot = function(req,res,next){
   });
  res.end();
  };
+
+ exports.botFunction = botFunction;
