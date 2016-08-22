@@ -16,6 +16,7 @@ var express = require('express'),
 moment.locale('fr');
 
 var app = express();
+app.use(bodyParser());
 
 var port = process.env.PORT || 5000;
 
@@ -64,24 +65,25 @@ recupCode = function(req, res, next){
     console.log(req.query.code);
     process.env.CODE = req.query.code;
     console.log('cb1 : le code est récupéré');
-    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='
-        +process.env.CODE, (res) => {
+    res.send('cb1 : le code est récupéré');
+    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(JSON.stringify(result));
             process.env.SLACKTOKEN = result.access_token;
             process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
-            console.log(process.env.SLACKTOKEN);
-            console.log(process.env.SLACK_BOT_TOKEN);
-            console.log('cb2 : le token est récupéré')
         });
     });
+    console.log(process.env.SLACKTOKEN);
+    console.log(process.env.SLACK_BOT_TOKEN);
+    console.log('cb2 : le token est récupéré')
     next();
     app.get('/',ouvertureWebsocket);
 };
 
 ouvertureWebsocket = function (req, res, next) {
     console.log('cb3 : ouverture du web socket');
+    res.send('cb3 : ouverture du websocket');
     https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
