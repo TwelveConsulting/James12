@@ -76,7 +76,7 @@ recupCode = function(req, res, next){
             console.log('cb2 : le token est récupéré')
         });
     });
-    next()
+    next();
     app.get('/redirect/',ouvertureWebsocket);
     //res.end();
 };
