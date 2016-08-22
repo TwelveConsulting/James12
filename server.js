@@ -77,8 +77,8 @@ recupCode = function(req, res, next){
         });
     });
     res.end();
-    //next()
-    //app.get('/websocket/',ouvertureWebsocket);
+    next()
+    app.get('/websocket/',ouvertureWebsocket);
 };
 
 ouvertureWebsocket = function (req, res, next) {
