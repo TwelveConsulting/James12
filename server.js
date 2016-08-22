@@ -72,13 +72,13 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
             console.log(JSON.stringify(result));
             process.env.SLACKTOKEN = result.access_token;
             process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
+            console.log(process.env.SLACKTOKEN);
+            console.log(process.env.SLACK_BOT_TOKEN);
+            console.log('cb2 : le token est récupéré')
+            next();
+            app.get('/websocket/',ouvertureWebsocket);
         });
     });
-    console.log(process.env.SLACKTOKEN);
-    console.log(process.env.SLACK_BOT_TOKEN);
-    console.log('cb2 : le token est récupéré')
-    next();
-    app.get('/websocket/',ouvertureWebsocket);
 };
 
 ouvertureWebsocket = function (req, res, next) {//perform the rtm.start slack method to open the websocket
@@ -88,10 +88,10 @@ ouvertureWebsocket = function (req, res, next) {//perform the rtm.start slack me
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(JSON.stringify(result));
+            next();
+            app.post('/running/',[bot.botFunction,conges.execute]);
         });
     });
-    next();
-    app.post('/running/',[bot.botFunction,conges.execute]);
     res.end(); 
 }
 
