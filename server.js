@@ -70,6 +70,7 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(JSON.stringify(result));
+            console.log(result.bot.bot_access_token);
             process.env.SLACKTOKEN = result.access_token;
             process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
             console.log(process.env.SLACKTOKEN);
