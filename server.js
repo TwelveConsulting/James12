@@ -77,8 +77,7 @@ recupCode = function(req, res, next){
         });
     });
     next();
-    app.get('/redirect/',ouvertureWebsocket);
-    //res.end();
+    app.get('/',ouvertureWebsocket);
 };
 
 ouvertureWebsocket = function (req, res, next) {
@@ -96,6 +95,6 @@ ouvertureWebsocket = function (req, res, next) {
 
 app.get('/',boutonSlack);
 app.listen(port, function () {
-  console.log('Ready');
+  console.log('Ready, listenning port '+port);
 });
 
