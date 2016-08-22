@@ -22,7 +22,7 @@ var port = process.env.PORT || 5000;
 
 
 //Fonctions de Callback
-boutonSlack = function(req, res,next) {
+boutonSlack = function(req, res,next) { //Show the slack button to install the app
     res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                         +'incoming-webhook,'
                                                         +'commands,'
@@ -61,7 +61,7 @@ boutonSlack = function(req, res,next) {
     app.get('/redirect/',recupCode);
 };
 
-recupCode = function(req, res, next){
+recupCode = function(req, res, next){//get the code parameter to perform the oauth process
     console.log(req.query.code);
     process.env.CODE = req.query.code;
     console.log('cb1 : le code est récupéré');
@@ -78,10 +78,10 @@ recupCode = function(req, res, next){
     console.log(process.env.SLACK_BOT_TOKEN);
     console.log('cb2 : le token est récupéré')
     next();
-    app.get('/',ouvertureWebsocket);
+    app.get('/websocket/',ouvertureWebsocket);
 };
 
-ouvertureWebsocket = function (req, res, next) {
+ouvertureWebsocket = function (req, res, next) {//perform the rtm.start slack method to open the websocket
     console.log('cb3 : ouverture du web socket');
     res.send('cb3 : ouverture du websocket');
     https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
