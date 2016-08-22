@@ -76,12 +76,13 @@ recupCode = function(req, res, next){
             console.log('cb2 : le token est récupéré')
         });
     });
-    res.end();
     next()
     app.get('/websocket/',ouvertureWebsocket);
+    res.end();
 };
 
 ouvertureWebsocket = function (req, res, next) {
+    console.log('cb3 : ouverture du web socket')
     https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
