@@ -50,7 +50,7 @@ boutonSlack = function(req, res,next) {
                                                         +'users.profile:write,'
                                                         +'users:read,'
                                                         +'users:write'
-                                                        +'&client_id='+process.env.CLIENT_ID)
+                                                        +'&client_id='+process.env.CLIENT_ID);
     console.log('cb0:le bouton slack s\'affiche');
     next();
     app.get('/reponseOAuth/',recupCode);
