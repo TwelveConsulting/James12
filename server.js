@@ -75,7 +75,7 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
             console.log(process.env.SLACKTOKEN);
             console.log(process.env.SLACK_BOT_TOKEN);
             console.log('cb2 : le token est récupéré')
-            next();
+            //next();
             app.get('/websocket/',ouvertureWebsocket);
         });
     });
