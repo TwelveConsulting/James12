@@ -57,7 +57,7 @@ boutonSlack = function(req, res,next) {
                 +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
     console.log('cb0:le bouton slack s\'affiche');
     next();
-    app.get('/reponseOAuth/',recupCode);
+    app.get('/responseOAuth/',recupCode);
 };
 
 recupCode = function(req, res, next){
@@ -76,7 +76,8 @@ recupCode = function(req, res, next){
             console.log('cb2 : le token est récupéré')
         });
     });
-    next()
+    res.end();
+    //next()
     //app.get('/websocket/',ouvertureWebsocket);
 };
 
