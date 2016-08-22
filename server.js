@@ -57,19 +57,15 @@ boutonSlack = function(req, res,next) { //Show the slack button to install the a
                 +'srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, '
                 +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
     console.log('cb0:le bouton slack s\'affiche');
-    console.log(req.query.code);
-    process.env.CODE = req.query.code;
-    console.log('cb1 : le code est récupéré');
-    res.send('cb1 : le code est récupéré');
     next();
     app.get('/redirect/',recupCode);
 };
 
 recupCode = function(req, res, next){//get the code parameter to perform the oauth process
-    /*console.log(req.query.code);
+    console.log(req.query.code);
     process.env.CODE = req.query.code;
     console.log('cb1 : le code est récupéré');
-    res.send('cb1 : le code est récupéré');*/
+    res.send('cb1 : le code est récupéré');
     https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
