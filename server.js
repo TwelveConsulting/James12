@@ -82,7 +82,7 @@ recupCode = function(req, res, next){
 };
 
 ouvertureWebsocket = function (req, res, next) {
-    console.log('cb3 : ouverture du web socket')
+    console.log('cb3 : ouverture du web socket');
     https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
