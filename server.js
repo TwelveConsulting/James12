@@ -64,7 +64,8 @@ recupCode = function(req, res, next){
     console.log(req.query.code);
     process.env.CODE = req.query.code;
     console.log('cb1 : le code est récupéré');
-    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
+    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='
+        +process.env.CODE, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(JSON.stringify(result));
@@ -76,7 +77,7 @@ recupCode = function(req, res, next){
         });
     });
     next()
-    app.get('/websocket/',ouvertureWebsocket);
+    //app.get('/websocket/',ouvertureWebsocket);
 };
 
 ouvertureWebsocket = function (req, res, next) {
