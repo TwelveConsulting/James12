@@ -57,7 +57,7 @@ boutonSlack = function(req, res,next) {
                 +'https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>');
     console.log('cb0:le bouton slack s\'affiche');
     next();
-    app.get('/responseOAuth/',recupCode);
+    app.get('/redirect/',recupCode);
 };
 
 recupCode = function(req, res, next){
@@ -77,7 +77,7 @@ recupCode = function(req, res, next){
         });
     });
     next()
-    app.get('/websocket/',ouvertureWebsocket);
+    app.get('/redirect/',ouvertureWebsocket);
     //res.end();
 };
 
