@@ -84,9 +84,9 @@ recupCode = function(req, res, next){
             console.log(process.env.SLACKTOKEN);
             console.log(process.env.SLACK_BOT_TOKEN);
             console.log('cb2 : le token est récupéré')
-            next();
-            app.get('/websocket/',ouvertureWebsocket);
         });
+        next();
+        app.get('/websocket/',ouvertureWebsocket);
     });
 };
 
