@@ -4,7 +4,7 @@ var express = require('express'),
     moment = require('moment'),
     http = require("http"),
     https = require("https"),
-    url = require("url");//,
+    url = require("url");
     Botkit = require('botkit'),
     Store = require("jfs"),
     fs = require("fs"),
@@ -76,7 +76,17 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
             console.log(process.env.SLACK_BOT_TOKEN);
             console.log('cb2 : le token est récupéré')
             next();
-            app.get('/websocket/',ouvertureWebsocket);
+            console.log('cb3 : ouverture du web socket');
+            res.send('cb3 : ouverture du websocket');
+            https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
+                res.on('data', (chunk) => {
+                    var result = JSON.parse(chunk);
+                    console.log(JSON.stringify(result));
+                    next();
+                    app.post('/running/',[bot.botFunction,conges.execute]);
+                });
+            });
+    res.end(); 
         });
     });
 };
