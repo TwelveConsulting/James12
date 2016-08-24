@@ -76,17 +76,21 @@ boutonSlack = function(req, res,next) {
 oauthFlow = function(req, res, next){
     process.env.CODE = req.query.code;
     console.log('cb1 : le code est récupéré');
-    https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
-        res.on('data', (chunk) => {
-            var result = JSON.parse(chunk);
-            process.env.SLACKTOKEN = result.access_token;
-            process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
-            console.log('cb2 : le token est récupéré')
-            next();
-            app.get('/websocket/',ouvertureWebsocket);
-            next();
-        });
+    res.send('<a href=https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE+'">'
+            +'<img alt="oauth" height="192" width="108"'
+            +'src=" https://i.ytimg.com/vi/XXgWeyMtvns/maxresdefault.jpg"</a>')
+    
+    //https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
+    res.on('data', (chunk) => {
+        var result = JSON.parse(chunk);
+        process.env.SLACKTOKEN = result.access_token;
+        process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
+        console.log('cb2 : le token est récupéré')
+        next();
+        app.get('/websocket/',ouvertureWebsocket);
     });
+    next();
+    app.get('/websocket/',ouvertureWebsocket);
 };
 
 //PERFORM THE rtm.slack METHOD
