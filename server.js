@@ -85,7 +85,6 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
                     app.post('/running/',[bot.botFunction,conges.execute]);
                 });
             });
-    res.end(); 
         });
     });
 };
