@@ -90,6 +90,7 @@ oauthFlow = function(req, res, next){
 
 //PERFORM THE rtm.slack METHOD
 ouvertureWebsocket = function (req, res, next) {
+    console.log("working");
     https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
