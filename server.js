@@ -1,4 +1,4 @@
-//appels aux librairies
+//LIBRAIRIES
 var express = require('express'),
     bodyParser = require('body-parser'),
     moment = require('moment'),
@@ -10,19 +10,29 @@ var express = require('express'),
     fs = require("fs"),
     path = require("path"),
     mime = require("mime"),
-    conges = require('./modules/conges');
-    bot = require('./modules/bot')
-
+    conges = require('./modules/conges'),
+    bot = require('./modules/bot');
 moment.locale('fr');
+
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+
+//CREATE THE app OBJECT
+//---------------------
 
 var app = express();
 app.use(bodyParser());
-
 var port = process.env.PORT || 5000;
 
 
-//Fonctions de Callback
-boutonSlack = function(req, res,next) { //Show the slack button to install the app
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+
+//CALLBACK FUNCTIONS
+//------------------
+
+// USE THE SLACK BUTTON TO CREATE THE APP
+boutonSlack = function(req, res,next) { 
     res.send('<a href="https://slack.com/oauth/authorize?scope=bot,'
                                                         +'incoming-webhook,'
                                                         +'commands,'
@@ -61,11 +71,10 @@ boutonSlack = function(req, res,next) { //Show the slack button to install the a
     app.get('/redirect/',recupCode);
 };
 
-recupCode = function(req, res, next){//get the code parameter to perform the oauth process
-    console.log(req.query.code);
+//GET THE CODE PARAMETER AND PERFORM THE OAUTH FLOW
+recupCode = function(req, res, next){
     process.env.CODE = req.query.code;
     console.log('cb1 : le code est récupéré');
-    res.send('cb1 : le code est récupéré');
     https.get('https://slack.com/api/oauth.access?client_id='+process.env.CLIENT_ID+'&client_secret='+process.env.CLIENT_SECRET+'&code='+process.env.CODE, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
@@ -76,33 +85,30 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
             console.log(process.env.SLACK_BOT_TOKEN);
             console.log('cb2 : le token est récupéré')
             next();
-            console.log('cb3 : ouverture du web socket');
-            https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
-                res.on('data', (chunk) => {
-                    var result = JSON.parse(chunk);
-                    console.log(JSON.stringify(result));
-                    next();
-                    app.post('/running/',[bot.botFunction,conges.execute]);
-                });
-            });
+            app.get('/websocket/',ouvertureWebsocket);
         });
     });
 };
 
-ouvertureWebsocket = function (req, res, next) {//perform the rtm.start slack method to open the websocket
-    console.log('cb3 : ouverture du web socket');
-    res.send('cb3 : ouverture du websocket');
+//PERFORM THE rtm.slack METHOD
+ouvertureWebsocket = function (req, res, next) {
     https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
         res.on('data', (chunk) => {
             var result = JSON.parse(chunk);
             console.log(JSON.stringify(result));
+            console.log('cb3 : ouverture du web socket');
             next();
-            app.post('/running/',[bot.botFunction,conges.execute]);
         });
     });
     res.end(); 
 }
 
+
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+
+//RUN THE CALLBACK FUNCTIONS
+//--------------------------
 app.get('/',boutonSlack);
 app.listen(port, function () {
   console.log('Ready, listenning port '+port);
