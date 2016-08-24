@@ -86,8 +86,8 @@ oauthFlow = function(req, res, next){
         process.env.SLACKTOKEN = result.access_token;
         process.env.SLACK_BOT_TOKEN = result.bot.bot_access_token;
         console.log('cb2 : le token est récupéré')
-        next();
-        app.get('/websocket/',ouvertureWebsocket);
+        //next();
+        //app.get('/websocket/',ouvertureWebsocket);
     });
     next();
     app.get('/websocket/',ouvertureWebsocket);
