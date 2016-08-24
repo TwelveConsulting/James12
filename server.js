@@ -77,7 +77,6 @@ recupCode = function(req, res, next){//get the code parameter to perform the oau
             console.log('cb2 : le token est récupéré')
             next();
             console.log('cb3 : ouverture du web socket');
-            res.send('cb3 : ouverture du websocket');
             https.get('https://slack.com/api/rtm.start?token='+process.env.SLACK_BOT_TOKEN, (res) => {
                 res.on('data', (chunk) => {
                     var result = JSON.parse(chunk);
